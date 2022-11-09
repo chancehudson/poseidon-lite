@@ -43,7 +43,7 @@ function poseidon(inputs) {
     if (inputs.length === 0) {
         throw new Error('Poseidon function input a non-empty array')
     }
-    if (inputs > N_ROUNDS_P.length) {
+    if (inputs.length > N_ROUNDS_P.length) {
         throw new Error(`Poseidon function input must be array of max length ${N_ROUNDS_P.length} (received length ${inputs.length})`)
     }
 
