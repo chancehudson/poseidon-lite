@@ -1,0 +1,17 @@
+{
+  "name": "poseidon-lite",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel ./src -d build",
+    "test": "node ./test"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2"
+  }
+}
