@@ -1,4 +1,3 @@
-const assert = require("assert");
 const Scalar = require("./scalar.js");
 const { default: ZqField } = require("./f1field.js");
 
@@ -38,8 +37,15 @@ const N_ROUNDS_P = [56, 57, 56, 60, 60, 63, 64, 63, 60, 66, 60, 65, 70, 60, 64, 
 const pow5 = a => F.mul(a, F.square(F.square(a, a)));
 
 function poseidon(inputs) {
-    assert(inputs.length > 0);
-    assert(inputs.length <= N_ROUNDS_P.length);
+    if (!Array.isArray(inputs)) {
+        throw new Error('Poseidon function input must be an array')
+    }
+    if (inputs.length === 0) {
+        throw new Error('Poseidon function input a non-empty array')
+    }
+    if (inputs > N_ROUNDS_P.length) {
+        throw new Error(`Poseidon function input must be array of max length ${N_ROUNDS_P.length} (received length ${inputs.length})`)
+    }
 
     const t = inputs.length + 1;
     const nRoundsF = N_ROUNDS_F;
