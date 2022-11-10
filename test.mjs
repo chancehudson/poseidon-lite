@@ -6,7 +6,7 @@ import crypto from 'crypto'
 const circomPoseidon = await buildPoseidon()
 for (let x = 0; x < 100000; x++) {
   if (x % 10000 === 0 && x > 0) console.log(x)
-  const inputCount = 1 + x % 10
+  const inputCount = 1 + x % 16
   const inputs = []
   for (let y = 0; y < inputCount; y++) {
     inputs.push('0x' + crypto.randomBytes(Math.floor(1 + 10 * Math.random())).toString('hex'))
