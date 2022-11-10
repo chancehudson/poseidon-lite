@@ -1,7 +1,9 @@
 {
   "name": "poseidon-lite",
   "version": "0.0.1",
-  "description": "",
+  "description": "Lightweight poseidon hash",
+  "keywords": ["poseidon", "hash", "circom", "zk"],
+  "homepage": "https://github.com/vimwitch/poseidon-lite#readme",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {

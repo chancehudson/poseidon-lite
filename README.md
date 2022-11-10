@@ -1,6 +1,6 @@
 # poseidon-lite [![CircleCI](https://dl.circleci.com/status-badge/img/gh/vimwitch/poseidon-lite/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/vimwitch/poseidon-lite/tree/main)
 
-A stripped down poseidon implementation pulled from circomlibjs.
+A stripped down poseidon implementation pulled from [circomlibjs](https://github.com/iden3/circomlibjs) 0.0.8.
 
 ## Use
 
