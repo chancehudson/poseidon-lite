@@ -1,4 +1,4 @@
 declare module 'poseidon-lite' {
-  function poseidon(input: bigint[]): BigInt
+  function poseidon(input: bigint[]): bigint
   export = poseidon
 }
