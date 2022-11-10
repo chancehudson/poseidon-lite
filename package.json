@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
+    "pre": "node scripts/prepublish.mjs",
     "build": "babel ./src -d build",
     "test": "node ./test.mjs"
   },
