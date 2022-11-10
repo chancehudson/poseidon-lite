@@ -2,7 +2,7 @@ version: 2.1
 workflows:
   test:
     jobs:
-      - test_only:
+      - test_only
 
 step_defs:
     - run: &node_version
