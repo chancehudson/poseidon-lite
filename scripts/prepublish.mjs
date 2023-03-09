@@ -10,3 +10,16 @@ const data = {
 await fs.promises.writeFile('./build/package.json', JSON.stringify(data))
 await fs.promises.copyFile('./index.d.ts', './build/index.d.ts')
 await fs.promises.copyFile('./README.md', './build/README.md')
+
+for (let x = 0 ; x < 16; x++) {
+  const t = `declare module 'poseidon-lite/poseidon${x+1}' {
+  export function poseidon${x+1}(input: bigint[]): bigint
+}\n`
+await fs.promises.writeFile(`./build/poseidon${x+1}.d.ts`, t)
+}
+for (let x = 0 ; x < 16; x++) {
+  const t = `declare module 'poseidon-lite/opt/poseidon${x+1}' {
+  export function poseidon${x+1}(input: bigint[]): bigint
+}\n`
+await fs.promises.writeFile(`./build/opt/poseidon${x+1}.d.ts`, t)
+}
