@@ -1,6 +1,6 @@
 {
   "name": "poseidon-lite",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Lightweight poseidon hash",
   "keywords": [
     "poseidon",
