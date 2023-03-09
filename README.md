@@ -22,6 +22,19 @@ import { poseidon2 } from 'poseidon-lite/opt'
 const hash = poseidon2(['0x01', '0x02'])
 ```
 
+### Individual import
+
+```js
+import { poseidon2 } from 'poseidon-lite/poseidon2'
+const hash = poseidon2(['0x01', '0x02'])
+```
+
+```js
+// Optimized version
+import { poseidon2 } from 'poseidon-lite/opt/poseidon2'
+const hash = poseidon2(['0x01', '0x02'])
+```
+
 ## Normal vs Opt
 
 This package includes two implementations of poseidon. The normal function and an optimized version with more pre-computed values. The normal function is ~3x slower than the opt version, but is also ~40% smaller.
@@ -30,14 +43,12 @@ Comparison of two input poseidon (`poseidon2()`):
 
 ```
 Constants size
-
 Normal: 12K
 Opt: 20K
 
 Speed
-
-Normal: 344 hashes/second
-Opt: 1000 hashes/second
+Normal: 243 hashes/second
+Opt: 689 hashes/second
 ```
 
 ## Build
