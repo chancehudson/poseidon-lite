@@ -13,13 +13,13 @@ await fs.promises.copyFile('./README.md', './build/README.md')
 
 for (let x = 0 ; x < 16; x++) {
   const t = `declare module 'poseidon-lite/poseidon${x+1}' {
-  export function poseidon${x+1}(input: bigint[]): bigint
+  export function poseidon${x+1}(input: (bigint|number|string)[]): bigint
 }\n`
 await fs.promises.writeFile(`./build/poseidon${x+1}.d.ts`, t)
 }
 for (let x = 0 ; x < 16; x++) {
   const t = `declare module 'poseidon-lite/opt/poseidon${x+1}' {
-  export function poseidon${x+1}(input: bigint[]): bigint
+  export function poseidon${x+1}(input: (bigint|number|string)[]): bigint
 }\n`
 await fs.promises.writeFile(`./build/opt/poseidon${x+1}.d.ts`, t)
 }

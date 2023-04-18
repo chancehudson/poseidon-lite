@@ -16,7 +16,8 @@ const N_ROUNDS_P = [56, 57, 56, 60, 60, 63, 64, 63, 60, 66, 60, 65, 70, 60, 64, 
 
 const pow5 = a => F.mul(a, F.square(F.square(a, a)));
 
-function poseidon(inputs, opt) {
+function poseidon(_inputs, opt) {
+    const inputs = _inputs.map(i => BigInt(i))
     if (!Array.isArray(inputs)) {
         throw new Error('Poseidon function input must be an array')
     }
