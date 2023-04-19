@@ -18,7 +18,7 @@
     "lint": "prettier ."
   },
   "author": "",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
