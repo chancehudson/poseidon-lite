@@ -1,6 +1,6 @@
-import poseidon from './poseidon/slow'
+import poseidon from './poseidon'
 import unstringifyBigInts from './poseidon/unstringify'
-import _c from './constants_slow/13'
+import _c from './constants/13'
 
 const c = unstringifyBigInts(_c)
 

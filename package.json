@@ -14,7 +14,8 @@
   "scripts": {
     "pre": "node scripts/prepublish.mjs",
     "build": "babel ./src -d build",
-    "test": "node ./test.mjs"
+    "test": "node ./test.mjs",
+    "lint": "prettier ."
   },
   "author": "",
   "license": "GPL-3.0",
@@ -22,6 +23,7 @@
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
-    "circomlibjs": "^0.1.7"
+    "circomlibjs": "^0.1.7",
+    "prettier": "^2.8.7"
   }
 }
