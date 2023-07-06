@@ -23,8 +23,8 @@ const M4 = [
   [1n, 1n, 4n, 6n],
 ]
 
-// multiple a vector by a matrix of the same height
-const mulVecMat = (vec, mat) => {
+// multiply a vector by a matrix of the same height
+const _mulVecMat = (vec, mat) => {
   const out = []
   for (let x = 0; x < vec.length; x++) {
     let o = 0n
@@ -36,14 +36,14 @@ const mulVecMat = (vec, mat) => {
   return out
 }
 
-// multiply a vector by a smaller matrix
-const mulVecMatMismatch = (vec, mat) => {
+// multiply a vector by a smaller or equal size matrix
+const mulVecMat = (vec, mat) => {
   if (vec.length % mat.length !== 0)
     throw new Error('Vector length must be a multiple of matrix height')
   const len = mat.length
   const out = []
   for (let z = 0; z < vec.length / len; z++) {
-    out.push(...mulVecMat(vec.slice(z * 4, (z + 1) * 4), mat))
+    out.push(..._mulVecMat(vec.slice(z * len, (z + 1) * len), mat))
   }
   return out
 }
@@ -92,19 +92,14 @@ async function poseidon(_inputs) {
   for (let x = 0; x < nRoundsF + nRoundsP; x++) {
     if (x === 0) {
       // apply an initial MDS mul to the input state
-      state = mulVecMatMismatch(state, M_E)
+      state = mulVecMat(state, M_E)
     }
     if (x < nRoundsF / 2 || x >= nRoundsF / 2 + nRoundsP) {
       // full (external) round
       for (let y = 0; y < state.length; y++) {
         state[y] = pow5(state[y] + C[x * t + y])
       }
-      if (t >= 4) {
-        // we need to break up the state an do individual muls
-        state = mulVecMatMismatch(state, M_E)
-      } else {
-        state = mulVecMat(state, M_E)
-      }
+      state = mulVecMat(state, M_E)
     } else {
       // partial (internal) round
       state[0] = pow5(state[0] + C[x * t])
