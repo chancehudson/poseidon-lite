@@ -94,17 +94,12 @@ async function poseidon(_inputs) {
       // apply an initial MDS mul to the input state
       state = mulVecMat(state, M_E)
     }
-    if (x < nRoundsF / 2 || x >= nRoundsF / 2 + nRoundsP) {
-      // full (external) round
-      for (let y = 0; y < state.length; y++) {
-        state[y] = pow5(state[y] + C[x * t + y])
-      }
-      state = mulVecMat(state, M_E)
-    } else {
-      // partial (internal) round
-      state[0] = pow5(state[0] + C[x * t])
-      state = mulVecMat(state, M)
+    const isExternal = x < nRoundsF / 2 || x >= nRoundsF / 2 + nRoundsP
+    for (let y = 0; y < state.length; y++) {
+      state[y] = pow5(state[y] + C[x * t + y])
+      if (!isExternal) break
     }
+    state = mulVecMat(state, isExternal ? M_E : M)
   }
   return state[0]
 }
