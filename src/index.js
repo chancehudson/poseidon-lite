@@ -88,12 +88,10 @@ async function poseidon(_inputs) {
   // external round matrix
   const M_E = t % 4 === 0 ? M4 : M
 
-  let state = [...inputs]
+  // apply an initial MDS mul to the input state
+  let state = mulVecMat(inputs, M_E)
+
   for (let x = 0; x < nRoundsF + nRoundsP; x++) {
-    if (x === 0) {
-      // apply an initial MDS mul to the input state
-      state = mulVecMat(state, M_E)
-    }
     const isExternal = x < nRoundsF / 2 || x >= nRoundsF / 2 + nRoundsP
     for (let y = 0; y < state.length; y++) {
       state[y] = pow5(state[y] + C[x * t + y])
