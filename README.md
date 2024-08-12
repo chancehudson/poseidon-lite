@@ -1,4 +1,4 @@
-# poseidon-lite [![CircleCI](https://dl.circleci.com/status-badge/img/gh/vimwitch/poseidon-lite/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/vimwitch/poseidon-lite/tree/main)
+# poseidon-lite [![CircleCI](https://dl.circleci.com/status-badge/img/gh/chancehudson/poseidon-lite/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/chancehudson/poseidon-lite/tree/main)
 
 A 0 dependence poseidon implementation over alt_bn128 (aka BN254).
 
