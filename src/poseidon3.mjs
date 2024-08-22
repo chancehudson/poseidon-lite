@@ -4,6 +4,6 @@ import _c from './constants/3'
 
 const c = unstringifyBigInts(_c)
 
-export function poseidon3(inputs) {
-  return poseidon(inputs, c)
+export function poseidon3(inputs, nOuts) {
+  return poseidon(inputs, c, nOuts)
 }
