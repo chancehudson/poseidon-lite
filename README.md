@@ -27,6 +27,18 @@ import { poseidon2 } from 'poseidon-lite/poseidon2'
 const hash = poseidon2(['0x01', '0x02'])
 ```
 
+### Get state elements
+
+More state elements can be retrieved by passing an optional second argument. Useful for e.g. sponge based encryption. The maximum number of elements that can be retrieved is `input.length + 1`.
+
+```js
+import { poseidon2 } from 'poseidon-lite'
+
+// retrieve 3 state elements instead of the default 1
+const elements = poseidon2(['0x01', '0x02'], 3)
+// elements is now a BigInt[3]
+```
+
 ## Build
 
 ```sh
