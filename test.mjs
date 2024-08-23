@@ -21,12 +21,41 @@ for (let x = 0; x < count; x++) {
         crypto.randomBytes(Math.floor(1 + 10 * Math.random())).toString('hex')
     )
   }
+  // check the result of returning the final hash (nOuts = 1)
   const circomOutput = BigInt(circomPoseidon.F.toString(circomPoseidon(inputs)))
   const time = process.hrtime()
   const out = poseidon[`poseidon${inputs.length}`](inputs)
   const diff = process.hrtime(time)
   times.push((diff[0] * NS_PER_SEC + diff[1]) / NS_PER_MSEC)
   if (circomOutput !== out) throw new Error('Hash output mismatch')
+
+  // check the result of returning multiple states (nOuts > 1)
+  const circomOutput2 =
+    inputs.length == 1
+      ? BigInt(
+          circomPoseidon.F.toString(circomPoseidon(inputs, 0, inputs.length))
+        )
+      : circomPoseidon(inputs, 0, inputs.length).map((v) =>
+          BigInt(circomPoseidon.F.toString(v))
+        )
+
+  const out2 = poseidon[`poseidon${inputs.length}`](inputs, inputs.length)
+  check(circomOutput2, out2)
+}
+
+function check(a, b) {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) {
+      throw new Error('Hash output state length mismatch')
+    }
+    for (let i = 0; i < a.length; i++) {
+      check(a[i], b[i])
+    }
+  } else if (typeof a === 'bigint' && typeof b === 'bigint') {
+    if (a !== b) throw new Error('Hash output mismatch')
+  } else {
+    throw new Error(`Output types mismatch: ${typeof a} ${typeof b}`)
+  }
 }
 
 {

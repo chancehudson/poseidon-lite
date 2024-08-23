@@ -30,7 +30,7 @@ function mix(state, M) {
   return out
 }
 
-function poseidon(_inputs, opt) {
+function poseidon(_inputs, opt, nOuts = 1) {
   const inputs = _inputs.map((i) => BigInt(i))
   if (inputs.length <= 0) {
     throw new Error('poseidon-lite: Not enough inputs')
@@ -60,7 +60,19 @@ function poseidon(_inputs, opt) {
     }
     state = mix(state, M)
   }
-  return state[0]
+  if (typeof nOuts !== 'number')
+    throw new Error(
+      `poseidon-lite: expected nOuts to be number got ${typeof nOuts}`
+    )
+  if (nOuts === 1) {
+    return state[0]
+  } else if (nOuts <= state.length) {
+    return state.slice(0, nOuts)
+  } else {
+    throw new Error(
+      `poseidon-lite: Invalid number of outputs requested ${nOuts}, max ${state.length}`
+    )
+  }
 }
 
 module.exports = poseidon
