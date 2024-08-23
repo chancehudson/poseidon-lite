@@ -60,10 +60,13 @@ function poseidon(_inputs, opt, nOuts = 1) {
     }
     state = mix(state, M)
   }
-  if (nOuts && nOuts > 1) {
+  if (typeof nOuts !== 'number') throw new Error(`poseidon-lite: expected nOuts to be number got ${typeof nOuts}`)
+  if (nOuts === 1) {
+    return state[0]
+  } else if (nOuts > state.length) {
     return state.slice(0, nOuts)
   } else {
-    return state[0]
+    throw new Error(`poseidon-lite: Invalid number of outputs requested ${nOuts}, max ${state.length}`)
   }
 }
 
