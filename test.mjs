@@ -57,7 +57,6 @@ function check(a, b) {
     throw new Error(`Output types mismatch: ${typeof a} ${typeof b}`)
   }
 }
-}
 
 {
   const sum = times.reduce((acc, v) => acc + v, 0)
