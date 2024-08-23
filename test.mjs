@@ -44,18 +44,19 @@ for (let x = 0; x < count; x++) {
 }
 
 function check(a, b) {
-  if (a !== b) {
-    if (Array.isArray(a) && Array.isArray(b)) {
-      if (a.length !== b.length) {
-        throw new Error('Hash output mismatch')
-      }
-      for (let i = 0; i < a.length; i++) {
-        check(a[i], b[i])
-      }
-    } else {
-      throw new Error('Hash output mismatch')
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) {
+      throw new Error('Hash output state length mismatch')
     }
+    for (let i = 0; i < a.length; i++) {
+      check(a[i], b[i])
+    }
+  } else if (typeof a === 'bigint' && typeof b === 'bigint') {
+    if (a !== b) throw new Error('Hash output mismatch')
+  } else {
+    throw new Error(`Output types mismatch: ${typeof a} ${typeof b}`)
   }
+}
 }
 
 {
