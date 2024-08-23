@@ -30,7 +30,7 @@ function mix(state, M) {
   return out
 }
 
-function poseidon(_inputs, opt, nOuts) {
+function poseidon(_inputs, opt, nOuts = 1) {
   const inputs = _inputs.map((i) => BigInt(i))
   if (inputs.length <= 0) {
     throw new Error('poseidon-lite: Not enough inputs')
